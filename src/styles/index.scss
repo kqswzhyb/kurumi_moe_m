@@ -3,6 +3,7 @@
 @import './base.scss';
 
 body {
+  min-width: 1120px !important;
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
