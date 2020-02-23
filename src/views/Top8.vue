@@ -22,7 +22,7 @@
       <div class="top">
         <div
           class="group-view"
-          style="width:720px;height:300px;"
+          style="width:720px;"
           v-for="item in top2"
           :key="item.id"
         >
@@ -77,8 +77,14 @@
           <div class="flex-between">
             <div
               class="group-cell"
+              :class="{
+                active:
+                  item.status === 1 ||
+                  (item.status === 2 &&
+                    compareVote(item.characters, 'vote_number') === i)
+              }"
               v-for="(v, i) in item.characters"
-              style="width:170px;height:240px;"
+              style="width:170px;"
               :key="v.id"
             >
               <div class="group-cell-role">
@@ -104,20 +110,12 @@
                   <span :title="v.name">{{ v.name }}</span>
                 </div>
                 <div class="vote" style="width:100px;">
-                  <div class="vote-number-view">
-                    <img
-                      src="../assets/images/vote-number.png"
-                      alt=""
-                      height="12"
-                    />
+                  <div class="vote-number-view" title="票数">
+                    <icon name="tend" :w="12" :h="12" color="#f6c259" />
                     <span class="vote-number-text">{{ v.vote_number }}</span>
                   </div>
-                  <div class="vote-number-view">
-                    <img
-                      src="../assets/images/love-number.png"
-                      alt=""
-                      height="12"
-                    />
+                  <div class="vote-number-view" title="真爱票数">
+                    <icon name="heart-fill" :w="12" :h="12" color="#e66457" />
                     <span class="love-number-text">{{ v.love_number }}</span>
                   </div>
                 </div>
@@ -129,7 +127,7 @@
       <div class="top">
         <div
           class="group-view"
-          style="width:450px;height:300px;"
+          style="width:450px;"
           v-for="item in top4"
           :key="item.id"
         >
@@ -184,8 +182,14 @@
           <div class="flex-between">
             <div
               class="group-cell"
+              :class="{
+                active:
+                  item.status === 1 ||
+                  (item.status === 2 &&
+                    compareVote(item.characters, 'vote_number') === i)
+              }"
               v-for="(v, i) in item.characters"
-              style="width:170px;height:240px;"
+              style="width:170px;"
               :key="v.id"
             >
               <div class="group-cell-role">
@@ -211,20 +215,12 @@
                   <span :title="v.name">{{ v.name }}</span>
                 </div>
                 <div class="vote" style="width:100px;">
-                  <div class="vote-number-view">
-                    <img
-                      src="../assets/images/vote-number.png"
-                      alt=""
-                      height="12"
-                    />
+                  <div class="vote-number-view" title="票数">
+                    <icon name="tend" :w="12" :h="12" color="#f6c259" />
                     <span class="vote-number-text">{{ v.vote_number }}</span>
                   </div>
-                  <div class="vote-number-view">
-                    <img
-                      src="../assets/images/love-number.png"
-                      alt=""
-                      height="12"
-                    />
+                  <div class="vote-number-view" title="真爱票数">
+                    <icon name="heart-fill" :w="12" :h="12" color="#e66457" />
                     <span class="love-number-text">{{ v.love_number }}</span>
                   </div>
                 </div>
@@ -280,7 +276,66 @@
               }"
             ></div>
           </div>
+          <div class="flex-between">
+            <div
+              class="group-cell"
+              :class="{
+                active:
+                  item.status === 1 ||
+                  (item.status === 2 &&
+                    compareVote(item.characters, 'vote_number') === i)
+              }"
+              style="width:110px;"
+              v-for="(v, i) in item.characters"
+              :key="v.id"
+            >
+              <div class="group-cell-role">
+                <div
+                  class="avatar-view"
+                  :class="{
+                    active:
+                      item.status === 1 ||
+                      (item.status === 2 &&
+                        compareVote(item.characters, 'vote_number') === i)
+                  }"
+                >
+                  <img
+                    :src="v.avatar"
+                    alt=""
+                    width="76"
+                    :title="v.name"
+                    class="avatar"
+                  />
+                </div>
+                <div class="role-name">
+                  <span :title="v.name">{{ v.name }}</span>
+                </div>
+                <div class="vote">
+                  <div class="vote-number-view" title="票数">
+                    <icon name="tend" :w="12" :h="12" color="#f6c259" />
+                    <span class="vote-number-text">{{ v.vote_number }}</span>
+                  </div>
+                  <div class="vote-number-view" title="真爱票数">
+                    <icon name="heart-fill" :w="12" :h="12" color="#e66457" />
+                    <span class="love-number-text">{{ v.love_number }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="top" style="margin-top:60px;">
+        <div
+          class="group-view"
+          v-for="item in top34"
+          :key="item.id"
+          style="width:430px;position:relative;"
+        >
           <div class="group-cell">
+            <div class="race-name">
+              三四名对决
+            </div>
             <div
               class="group-cell-role"
               v-for="(v, i) in item.characters"
@@ -294,33 +349,26 @@
                     (item.status === 2 &&
                       compareVote(item.characters, 'vote_number') === i)
                 }"
+                style="width:126px;height:126px;"
               >
                 <img
                   :src="v.avatar"
                   alt=""
-                  width="76"
+                  width="120"
                   :title="v.name"
                   class="avatar"
                 />
               </div>
-              <div class="role-name">
+              <div class="role-name" style="width:140px;">
                 <span :title="v.name">{{ v.name }}</span>
               </div>
               <div class="vote">
-                <div class="vote-number-view">
-                  <img
-                    src="../assets/images/vote-number.png"
-                    alt=""
-                    height="12"
-                  />
+                <div class="vote-number-view" title="票数">
+                  <icon name="tend" :w="12" :h="12" color="#f6c259" />
                   <span class="vote-number-text">{{ v.vote_number }}</span>
                 </div>
-                <div class="vote-number-view">
-                  <img
-                    src="../assets/images/love-number.png"
-                    alt=""
-                    height="12"
-                  />
+                <div class="vote-number-view" title="真爱票数">
+                  <icon name="heart-fill" :w="12" :h="12" color="#e66457" />
                   <span class="love-number-text">{{ v.love_number }}</span>
                 </div>
               </div>
@@ -365,6 +413,35 @@ export default {
           ]
         }
       ],
+      top34: [
+        {
+          id: 1,
+          sex: 1,
+          title: "女子组三四名对决赛",
+          name: "AB-2",
+          status: 0,
+          characters: [
+            // {
+            //   id: 1,
+            //   name: "远坂凛",
+            //   sex: 1,
+            //   order: 0,
+            //   avatar: require("../assets/images/a1-1.jpg"),
+            //   vote_number: 209331,
+            //   love_number: 5600
+            // },
+            // {
+            //   id: 5,
+            //   name: "薇尔莉特·伊芙加登",
+            //   sex: 1,
+            //   order: 1,
+            //   avatar: require("../assets/images/b1-1.jpg"),
+            //   vote_number: 163195,
+            //   love_number: 6936
+            // }
+          ]
+        }
+      ],
       top4: [
         {
           id: 1,
@@ -379,8 +456,8 @@ export default {
               sex: 1,
               order: 0,
               avatar: require("../assets/images/a1-1.jpg"),
-              vote_number: 251403,
-              love_number: 34710
+              vote_number: 0, //251403,
+              love_number: 0 //34710
             }
             // {
             //   id: 3,
@@ -406,8 +483,8 @@ export default {
               sex: 1,
               order: 0,
               avatar: require("../assets/images/b1-1.jpg"),
-              vote_number: 173627,
-              love_number: 16254
+              vote_number: 0, //173627,
+              love_number: 0 //16254
             }
             // {
             //   id: 7,
@@ -535,6 +612,7 @@ export default {
   },
   created() {
     this.addData(this.top2);
+    this.addData(this.top34);
     this.addData(this.top4);
     this.addData(this.top8);
   },
@@ -621,15 +699,22 @@ export default {
 }
 .group-view {
   width: 240px;
-  height: 240px;
   .group-cell {
-    height: 200px;
     width: 100%;
     display: flex;
     justify-content: space-around;
     padding-top: 15px;
-    border-radius: 10px;
+    padding-bottom: 5px;
+    border-radius: 18px;
     border: 1px solid #f7ddf1;
+    cursor: pointer;
+    &.active {
+      background: linear-gradient(
+        0deg,
+        rgba(89, 92, 117, 0.3),
+        rgba(69, 6, 187, 0.3)
+      );
+    }
   }
   .group-cell-role {
     display: flex;
@@ -638,7 +723,7 @@ export default {
   }
 }
 .role-name {
-  margin: 7px 0;
+  margin: 5px 0;
   text-align: center;
   line-height: 25px;
   color: #fff;
@@ -646,6 +731,17 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 500;
+}
+.race-name {
+  position: absolute;
+  top: 30%;
+  left: 47.5%;
+  color: #fff;
+  width: 24px;
+  border-radius: 18px;
+  background: linear-gradient(0deg, #e66457, #f6c259);
+  padding: 8px 5px;
 }
 .moe-king {
   margin-bottom: 20px;
@@ -658,16 +754,17 @@ export default {
   text-align: left;
   font-size: 14px;
   .vote-number-view {
+    width: 70px;
     margin: 5px;
-    img {
-      vertical-align: baseline;
-      margin-right: 5px;
-    }
     .vote-number-text {
+      display: inline-block;
+      margin-left: 5px;
       color: #f6c259;
     }
     .love-number-text {
-      color: #f681b0;
+      display: inline-block;
+      margin-left: 5px;
+      color: #e66457;
     }
   }
 }
@@ -685,7 +782,7 @@ export default {
     // border: 1px solid #e8e8ee;
   }
   &.active {
-    border: 2px solid #dd3424;
+    border: 2px solid #e66457;
   }
 }
 .vote-sign {

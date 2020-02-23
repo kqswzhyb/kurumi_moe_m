@@ -3,6 +3,9 @@ import router from "./router";
 import store from "./store";
 import "@/styles/index.scss";
 
+import Icon from "vue2-svg-icon/Icon";
+Vue.component("icon", Icon);
+
 Vue.config.productionTip = false;
 
 new Vue({
