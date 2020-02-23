@@ -12,6 +12,11 @@ const routes = [
     path: "/top8",
     name: "top8",
     component: () => import("@/views/Top8.vue")
+  },
+  {
+    path: "/top16",
+    name: "top16",
+    component: () => import("@/views/Top16.vue")
   }
 ];
 
