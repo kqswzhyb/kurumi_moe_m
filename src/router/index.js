@@ -1,7 +1,7 @@
 const routes = [
   {
     path: "/",
-    redirect: "/top8"
+    redirect: "/top16"
   },
   {
     path: "/home",
